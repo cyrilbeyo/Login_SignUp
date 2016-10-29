@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ayndev.loginandsignupone.databases.OtakuDatabaseHelper;
+
 public class LoginActivity extends AppCompatActivity {
 
     public static final int REQUEST_SIGNUP = 0;
@@ -61,21 +63,21 @@ public class LoginActivity extends AppCompatActivity {
         _btnLogin.setEnabled(false);
 
         final ProgressDialog progressDialog = new ProgressDialog(this,
-                R.style.AppTheme_Dark_Dialog);
+              R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Authenticating...");
         progressDialog.show();
 
         handler = new Handler();
         handler.postDelayed(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        onLoginSuccess();
-                        progressDialog.dismiss();
-                        logging();
-                    }
-                }, 3000
+              new Runnable() {
+                  @Override
+                  public void run() {
+                      onLoginSuccess();
+                      progressDialog.dismiss();
+                      logging();
+                  }
+              }, 3000
         );
     }
 
@@ -98,7 +100,11 @@ public class LoginActivity extends AppCompatActivity {
         OtakuDatabaseHelper helper = new OtakuDatabaseHelper(this);
         String temp = helper.searchPasswordFromEmail(email);
         if (pass.equals(temp)) {
-            Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_LONG).show();
+
+            Intent intent = new Intent(this, MainActivity.class);
+
+            startActivity(intent);
+
         } else {
             Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_LONG).show();
         }

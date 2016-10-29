@@ -1,10 +1,10 @@
-package com.ayndev.loginandsignupone;
+package com.ayndev.loginandsignupone.databases;
 
-class Otakunz {
+public class Otakunz {
 
     private String nameUser, emailUser, passUser;
 
-    Otakunz(String nameUser, String emailUser, String passUser) {
+    public Otakunz(String nameUser, String emailUser, String passUser) {
         setNameUser(nameUser);
         setEmailUser(emailUser);
         setPassUser(passUser);
